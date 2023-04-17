@@ -18,6 +18,6 @@ public class BuildProcessor extends AbstractProcessor {
 
         List<Element> setters = annotatedMethods.get(true);
 
-        String className =((TypeElement).setters.get(0)юнщнг)
+        String className =((TypeElement).setters.get(0))
     }
 }
