@@ -7,6 +7,9 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 import java.util.stream.Collectors;
+
+import static java.util.stream.Collectors.toMap;
+
 public class BuildProcessor extends AbstractProcessor {
     @Override
     public boolean process(Set<? extends TypeElement> annotations, RoundEnvironment roundEnv) {
@@ -18,6 +21,16 @@ public class BuildProcessor extends AbstractProcessor {
 
         List<Element> setters = annotatedMethods.get(true);
 
-        String className =((TypeElement).setters.get(0))
+        String className = ((TypeElement) setters.get(0).getEnclosingElement()).getQualifiedName().toString();
+
+        Map<String, String> setterMap = setters.stream().collect(Collectors.toMap(
+                setter -> setter.getSimpleName().toString(), setter ->
+                        ((ExecutableType) setter.asType()).getParameterTypes().get(0).toString()));
+      try{
+          createBuilderClass()
+      }
+
+
+        return false;
     }
 }
